@@ -9,6 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
+    // * Massive assigment
+    // * Introduce into array allowed properties
+    protected $fillable = ['name', 'slug'];
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     //One to many relationship
     public function posts()
     {

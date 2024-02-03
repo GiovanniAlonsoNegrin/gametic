@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -37,11 +36,11 @@ class PostController extends Controller
             ->latest('id')
             ->paginate(4);
 
-        $categories = Category::all();
-
+        $categories = $category::all();
+        $tags = Tag::all();
         $latestPosts = Post::latest('id')->take(4)->get();
 
-        return view('posts.category', compact('posts', 'category', 'categories', 'latestPosts'));
+        return view('posts.category', compact('posts', 'category', 'tags', 'categories', 'latestPosts'));
     }
 
     public function tag(Tag $tag)
@@ -49,8 +48,11 @@ class PostController extends Controller
         // * Return posts lists with x tag
         //return $tag->posts;
         // * Return relation
-        $posts = $tag->posts()->where('status', 'enable')->paginate(4);
+        $tags = $tag->where('id', '!=', $tag->id)->get();
+        $posts = $tag->posts()->where('status', 'enable')->latest('id')->paginate(4);
+        $categories = Category::all();
+        $latestPosts = Post::latest('id')->take(4)->get();
 
-        return view('posts.tag', compact('tag'));
+        return view('posts.tag', compact('tag', 'tags', 'posts', 'categories', 'latestPosts'));
     }
 }

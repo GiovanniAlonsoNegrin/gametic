@@ -315,6 +315,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'admin',
             'icon' => 'fas fa-tachometer-alt fa-fw',
+            'icon_color' => 'cyan',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
@@ -323,69 +324,77 @@ return [
             'text'  => 'Categorías',
             'route' => 'admin.categories.index',
             'icon'  => 'fas fa-fw fa-th-large',
-            'icon_color' => 'cyan'
+            'icon_color' => 'cyan',
+            'active' => ['admin/categories/*']
         ],
         [
-            'text' => 'Etiquetas',
+            'text'  => 'Etiquetas',
             'route' => 'admin.tags.index',
-            'icon' => 'fas fa-fw fa-tags',
+            'icon'  => 'fas fa-fw fa-tags',
             'icon_color' => 'cyan',
             'active' => ['admin/tags/*']
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
+            'text'  => 'Posts',
+            'route' => 'admin.posts.index',
+            'icon'  => 'fas fa-fw fa-file',
             'icon_color' => 'cyan',
-            'url'        => '#',
+            'active' => ['admin/posts/*']
         ],
+        // [
+        //     'text'    => 'multilevel',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //         [
+        //             'text'    => 'level_one',
+        //             'url'     => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url'  => '#',
+        //                 ],
+        //                 [
+        //                     'text'    => 'level_two',
+        //                     'url'     => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //     ],
+        // ],
+        // ['header' => 'labels'],
+        // [
+        //     'text'       => 'important',
+        //     'icon_color' => 'red',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url'        => '#',
+        // ],
     ],
 
     /*
@@ -540,5 +549,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

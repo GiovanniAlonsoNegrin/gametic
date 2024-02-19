@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-base-layout>
     <div class="container py-8">
         <h1 class="uppercase text-center text-4xl font-bold text-white mb-5">Categoría: {{ $category->name }}</h1>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -52,4 +52,4 @@
             </aside>
         </div>
     </div>
-</x-app-layout>
+</x-base-layout>

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-base-layout>
     <div class="container py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse ($posts as $post)
@@ -25,4 +25,4 @@
             {{ $posts->links() }}
         </div>
     </div>
-</x-app-layout>
+</x-base-layout>

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-base-layout>
     <div class="container py-8">
         <h1 class="text-4xl font-bold text-white">{{ $post->name }}</h1>
         <div class="text-lg text-white mb-2">
@@ -32,4 +32,4 @@
             </aside>
         </div>
     </div>
-</x-app-layout>
+</x-base-layout>

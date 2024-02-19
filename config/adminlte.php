@@ -291,11 +291,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -339,14 +339,7 @@ return [
             'route' => 'admin.posts.index',
             'icon'  => 'fas fa-fw fa-file',
             'icon_color' => 'cyan',
-            'active' => ['admin/posts']
-        ],
-        [
-            'text'  => 'Crear Post',
-            'route' => 'admin.posts.create',
-            'icon'  => 'fas fa-fw fa-file',
-            'icon_color' => 'cyan',
-            'active' => ['admin/posts/create']
+            'active' => ['admin/posts/*']
         ],
         // [
         //     'text'    => 'multilevel',

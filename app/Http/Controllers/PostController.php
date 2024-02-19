@@ -36,7 +36,7 @@ class PostController extends Controller
             ->latest('id')
             ->paginate(4);
 
-        $categories = $category::all();
+        $categories = $category::where('id', '!=', $category->id)->get();
         $tags = Tag::all();
         $latestPosts = Post::latest('id')->take(4)->get();
 

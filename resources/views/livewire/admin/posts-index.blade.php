@@ -1,32 +1,8 @@
 <div class="card">
     <div class="card-header">
-        <form wire:submit="save">
-            {{-- * wire:model.live --}}
-            <div class="input-group mb-2">
-                <input wire:model="postName" class="form-control" placeholder="Ingrese el nombre de un post">
-            </div>
-            <div class="input-group mb-2">
-                <input wire:model="postUser" type="email" class="form-control" placeholder="Ingrese el email de un usuario">
-            </div>
-            @error('postUser') <span class="text-danger">{{ $message }}</span> @enderror
-            <div class="d-flex justify-content-between mt-2">
-                <button type="submit" class="btn btn-primary">
-                    <span wire:loading class="spinner-grow spinner-grow-sm"></span>
-                    <span wire:loading>Cargando</span>
-                    <span wire:loading.remove>buscar</span>
-                </button>
-                <button wire:click="showMyPosts" class="btn btn-success">
-                    <span wire:loading class="spinner-grow spinner-grow-sm"></span>
-                    <span wire:loading>Cargando</span>
-                    <span wire:loading.remove>Ver mis posts</span>
-                </button>
-                <button wire:click="resetPosts" class="btn btn-secondary">
-                    <span wire:loading class="spinner-grow spinner-grow-sm"></span>
-                    <span wire:loading>Cargando</span>
-                    <span wire:loading.remove>Ver todo</span>
-                </button>
-            </div>
-        </form>
+        <div class="input-group mb-2">
+            <input wire:model.live.debounce.500ms="search" class="form-control" placeholder="Ingrese el nombre de un post o un email de usuario">
+        </div>
     </div>
     @if ($posts->count())
         <div class="card-body">
@@ -35,7 +11,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Usuario</th>
+                        <th>Email usuario</th>
+                        <th>Nombre usuario</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -44,7 +21,8 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->name }}</td>
-                            <td>{{ $post->user->email }}</td>
+                            <td>{{ $post->User->email }}</td>
+                            <td>{{ $post->User->name }}</td>
                             <td width="10px">
                                 <a href="{{ route('admin.posts.edit', $post) }}" class="fas fa-edit fa-1x"></a>
                             </td>

@@ -339,7 +339,14 @@ return [
             'route' => 'admin.posts.index',
             'icon'  => 'fas fa-fw fa-file',
             'icon_color' => 'cyan',
-            'active' => ['admin/posts/*']
+            'active' => ['admin/posts']
+        ],
+        [
+            'text'  => 'Crear Post',
+            'route' => 'admin.posts.create',
+            'icon'  => 'fas fa-fw fa-file',
+            'icon_color' => 'cyan',
+            'active' => ['admin/posts/create']
         ],
         // [
         //     'text'    => 'multilevel',

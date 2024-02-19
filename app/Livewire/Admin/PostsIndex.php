@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Rules\EmailExists;
 use Livewire\Component;
 use Livewire\WithPagination;
-use PhpParser\Node\Stmt\TryCatch;
 
 class PostsIndex extends Component
 {
@@ -19,6 +18,9 @@ class PostsIndex extends Component
 
     public $postUser;
 
+    public $clickedInResetPosts = false;
+    public $authUser = null;
+
 	// public function updatingSearch()
 	// {
 	// 	$this->resetPage();
@@ -26,23 +28,24 @@ class PostsIndex extends Component
 
     public function save(){
         $this->validate([
-            'postUser' => ['email', new EmailExists]
+            'postUser' => ['nullable', 'email', new EmailExists]
         ]);
     }
 
     public function resetPosts()
     {
+        $this->clickedInResetPosts = true;
         $this->postName = '';
         $this->postUser = null;
     }
 
     public function getUserIdByEmail()
     {
-        if ($this->postUser) {
-            if(User::where('email', $this->postUser)->exists()) {
-                return User::where('email', $this->postUser)->pluck('id');
+        if ($this->postUser || $this->authUser) {
+            if(User::where('email', $this->postUser ? $this->postUser : $this->authUser)->exists()) {
+                return User::where('email', $this->postUser ? $this->postUser : $this->authUser)->pluck('id');
             } else {
-
+                return null;
             }
         }
 
@@ -51,18 +54,20 @@ class PostsIndex extends Component
 
     public function showMyPosts()
     {
-        $this->postUser = auth()->user()->email;
+        $this->postUser = null;
+        $this->authUser = auth()->user()->email;
     }
 
     public function render()
     {
-
         $posts = Post::where('name', 'LIKE', '%'.$this->postName.'%')
         ->when($this->getUserIdByEmail(), function ($query, $userId) {
             return $query->where('user_id', $userId);
         })
         ->latest('id')
         ->paginate();
+
+        $this->authUser = null;
 
         return view('livewire.admin.posts-index', compact('posts'));
     }

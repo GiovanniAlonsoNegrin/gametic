@@ -7,6 +7,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -54,6 +55,8 @@ class PostController extends Controller
 
         $post->tags()->attach($request->tags);
 
+        Cache::flush();
+
         return redirect()->route('admin.posts.index')->with('success', 'El post se creó con éxito');;
     }
 
@@ -94,6 +97,8 @@ class PostController extends Controller
 
             $post->tags()->sync($request->tags);
 
+            Cache::flush();
+
             return redirect()->route('admin.posts.index')->with('success', 'El post se actualizó con éxito');
         }
 
@@ -111,6 +116,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+
+        Cache::flush();
 
         return redirect()->route('admin.posts.index')->with('success', 'El post se eliminó con éxito');
     }

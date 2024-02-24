@@ -6,12 +6,24 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
     public function index(): View
     {
-        $posts = Post::where('status', 'enable')->latest('id')->paginate(8);
+        if (request()->page) {
+            $key = 'posts' . request()->page;
+        } else {
+            $key = 'posts';
+        }
+
+        if (Cache::has($key)) {
+            $posts = Cache::get($key);
+        } else {
+            $posts = Post::where('status', 'enable')->latest('id')->paginate(8);
+            Cache::set($key, $posts);
+        }
 
         return view('posts.index', compact('posts'));
     }

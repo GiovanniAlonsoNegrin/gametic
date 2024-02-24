@@ -3,8 +3,7 @@
 @section('title', 'Gametic')
 
 @section('content_header')
-    <a class="btn btn-secondary float-right" href="{{ route('admin.posts.create') }}">Nuevo post</a>
-    <h1>Posts</h1>
+    <h1>Lista usuarios</h1>
 @stop
 
 @section('content')
@@ -13,7 +12,11 @@
             <strong>{{ session('success') }}</strong><span id="closeAlert" class="font-weight-bold" style="cursor:pointer;color:black;">&#x2715;</span>
         </div>
     @endif
-    @livewire('admin.posts-index')
+    @livewire('admin.users-index')
+@stop
+
+@section('css')
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')

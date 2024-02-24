@@ -321,6 +321,13 @@ return [
         ],
         ['header' => 'Administrador'],
         [
+            'text'  => 'Users',
+            'route' => 'admin.users.index',
+            'icon'  => 'fas fa-fw fa-users',
+            'icon_color' => 'cyan',
+            'active' => ['admin/users/*']
+        ],
+        [
             'text'  => 'Categorías',
             'route' => 'admin.categories.index',
             'icon'  => 'fas fa-fw fa-th-large',

@@ -18,6 +18,14 @@ class TagController extends Controller
         'pink' => 'Rosa'
     ];
 
+    public function __construct()
+    {
+        $this->middleware('can:admin.tags.index')->only('index');
+        $this->middleware('can:admin.tags.create')->only('create', 'store');
+        $this->middleware('can:admin.tags.edit')->only('edit','update');
+        $this->middleware('can:admin.tags.delete')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -51,14 +59,6 @@ class TagController extends Controller
         Tag::create($request->all());
 
         return redirect()->route('admin.tags.index')->with('success', 'La etiqueta se creó con exito');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tag $tag)
-    {
-        return view('admin.tags.show', compact('tag'));
     }
 
     /**

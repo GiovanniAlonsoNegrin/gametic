@@ -25,27 +25,33 @@
                             <td>{{ $post->user->email }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>
-                                <div class="custom-control custom-switch">
-                                    <input
-                                        type="checkbox"
-                                        class="custom-control-input my-pointer"
-                                        id="{{$post->id}}"
-                                        style="cursor:pointer;"
-                                        wire:model="state.switchStatus.{{$post->id}}"
-                                        wire:click="toggleSwitch({{$post->id}})"
-                                        @if($switchStatus[$post->id] == 'enable') checked @endif>
-                                    <label class="custom-control-label" for="{{$post->id}}" style="cursor:pointer;"></label>
-                                </div>
+                                @can('admin.posts.status')
+                                    <div class="custom-control custom-switch">
+                                        <input
+                                            type="checkbox"
+                                            class="custom-control-input my-pointer"
+                                            id="{{$post->id}}"
+                                            style="cursor:pointer;"
+                                            wire:model="state.switchStatus.{{$post->id}}"
+                                            wire:click="toggleSwitch({{$post->id}})"
+                                            @if($switchStatus[$post->id] == 'enable') checked @endif>
+                                        <label class="custom-control-label" for="{{$post->id}}" style="cursor:pointer;"></label>
+                                    </div>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <a href="{{ route('admin.posts.edit', $post) }}" class="{{$post->user->id == auth()->user()->id ? 'fas fa-edit fa-1x': 'fas fa-eye'}}"></a>
+                                @can('admin.posts.edit')
+                                    <a href="{{ route('admin.posts.edit', $post) }}" class="{{$post->user->id == auth()->user()->id ? 'fas fa-edit fa-1x': 'fas fa-eye'}}"></a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="submit" value="">
-                                </form>
+                                @can('admin.posts.delete')
+                                    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="submit" value="">
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

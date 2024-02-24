@@ -3,7 +3,9 @@
 @section('title', 'Gametic')
 
 @section('content_header')
-    <a class="btn btn-secondary float-right" href="{{ route('admin.posts.create') }}">Nuevo post</a>
+    @can('admin.posts.create')
+        <a class="btn btn btn-success float-right" href="{{ route('admin.posts.create') }}">Nuevo post</a>
+    @endcan
     <h1>Posts</h1>
 @stop
 

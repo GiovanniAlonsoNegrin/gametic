@@ -20,17 +20,17 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.index'])->syncRoles([$role1, $role2]);
 
         Permission::create(['name' => 'admin.users.index'])->assignRole($role1);
-        Permission::create(['name' => 'admin.users.edit'])->assignRole($role1);;
+        Permission::create(['name' => 'admin.users.edit'])->assignRole($role1);
         Permission::create(['name' => 'admin.users.delete'])->assignRole($role1);
 
         Permission::create(['name' => 'admin.categories.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.categories.create'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'admin.categories.edit'])->assignRole($role1);
+        Permission::create(['name' => 'admin.categories.edit'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.categories.delete'])->assignRole($role1);
 
         Permission::create(['name' => 'admin.tags.index'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.tags.create'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'admin.tags.edit'])->assignRole($role1);
+        Permission::create(['name' => 'admin.tags.edit'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.tags.delete'])->assignRole($role1);
 
         Permission::create(['name' => 'admin.posts.index'])->syncRoles([$role1, $role2]);

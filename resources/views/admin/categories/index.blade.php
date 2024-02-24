@@ -3,6 +3,9 @@
 @section('title', 'Gametic')
 
 @section('content_header')
+    @can('admin.categories.create')
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-success float-right">Añadir categoría</a>
+    @endcan
     <h1>Categorías</h1>
 @stop
 
@@ -13,9 +16,6 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">
-            <a href="{{ route('admin.categories.create') }}" class="btn btn-success">Añadir categoría</a>
-        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -31,14 +31,18 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td width="10px">
-                                <a href="{{ route('admin.categories.edit', $category) }}" class="fas fa-edit fa-1x"></a>
+                                @can('admin.categories.edit')
+                                    <a href="{{ route('admin.categories.edit', $category) }}" class="fas fa-edit fa-1x"></a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="submit" value="">
-                                </form>
+                                @can('admin.categories.delete')
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="submit" value="">
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @empty

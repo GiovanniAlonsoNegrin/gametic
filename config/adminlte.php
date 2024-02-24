@@ -316,6 +316,7 @@ return [
             'url'  => 'admin',
             'icon' => 'fas fa-tachometer-alt fa-fw',
             'icon_color' => 'cyan',
+            'can'  => 'admin.index',
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
@@ -325,28 +326,32 @@ return [
             'route' => 'admin.users.index',
             'icon'  => 'fas fa-fw fa-users',
             'icon_color' => 'cyan',
-            'active' => ['admin/users/*']
+            'active' => ['admin/users/*'],
+            'can' => 'admin.users.index'
         ],
         [
             'text'  => 'Categorías',
             'route' => 'admin.categories.index',
             'icon'  => 'fas fa-fw fa-th-large',
             'icon_color' => 'cyan',
-            'active' => ['admin/categories/*']
+            'active' => ['admin/categories/*'],
+            'can' => 'admin.categories.index'
         ],
         [
             'text'  => 'Etiquetas',
             'route' => 'admin.tags.index',
             'icon'  => 'fas fa-fw fa-tags',
             'icon_color' => 'cyan',
-            'active' => ['admin/tags/*']
+            'active' => ['admin/tags/*'],
+            'can' => 'admin.tags.index'
         ],
         [
             'text'  => 'Posts',
             'route' => 'admin.posts.index',
             'icon'  => 'fas fa-fw fa-file',
             'icon_color' => 'cyan',
-            'active' => ['admin/posts/*']
+            'active' => ['admin/posts/*'],
+            'can' => 'admin.posts.index'
         ],
         // [
         //     'text'    => 'multilevel',

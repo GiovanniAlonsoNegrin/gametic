@@ -24,16 +24,20 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->email_verified_at ? 'Si' : 'No' }}</td>
                             <td width="10px">
-                                <a href="{{ route('admin.users.edit', $user) }}" class="fas fa-eye ml-3"></a>
+                                @can('admin.users.edit')
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="fas fa-eye ml-3"></a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                @if ($authUser->id != $user->id)
-                                    <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="submit" value="">
-                                    </form>
-                                @endif
+                                @can('admin.users.delete')
+                                    @if ($authUser->id != $user->id)
+                                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="submit" value="">
+                                        </form>
+                                    @endif
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

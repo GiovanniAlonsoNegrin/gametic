@@ -322,12 +322,20 @@ return [
         ],
         ['header' => 'Administrador'],
         [
-            'text'  => 'Users',
+            'text'  => 'Usuarios',
             'route' => 'admin.users.index',
             'icon'  => 'fas fa-fw fa-users',
             'icon_color' => 'cyan',
             'active' => ['admin/users/*'],
             'can' => 'admin.users.index'
+        ],
+        [
+            'text'  => 'Roles',
+            'route' => 'admin.roles.index',
+            'icon'  => 'fas fa-fw fa-user-shield',
+            'icon_color' => 'cyan',
+            'active' => ['admin/roles/*'],
+            // 'can' => 'admin.users.index'
         ],
         [
             'text'  => 'Categorías',

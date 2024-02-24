@@ -25,6 +25,8 @@
                 {{ $post->category->name }}
             </div>
         @endif
+    @else
+        {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
     @endisset
 
     @error('category')
@@ -88,7 +90,7 @@
 </div>
 
 <div class="form-group text-dark">
-    {!! Form::label('body', 'Curpo del post') !!}
+    {!! Form::label('body', 'Cuerpo del post') !!}
     <div style="color:black !important">
         {!! Form::textarea('body', null, ['class' => 'form-control', 'readonly' => isset($post) && $post->user->id != auth()->user()->id]) !!}
     </div>

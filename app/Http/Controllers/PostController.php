@@ -18,6 +18,8 @@ class PostController extends Controller
 
     public function show(Post $post): View
     {
+        $this->authorize('published', $post);
+
         $relatedPosts = Post::where('category_id', $post->category_id)
                                 ->where([['status', 'enable'], ['id', '!=', $post->id]])
                                 ->latest('id')

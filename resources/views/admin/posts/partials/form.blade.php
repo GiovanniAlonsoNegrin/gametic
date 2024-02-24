@@ -34,20 +34,19 @@
     @enderror
 </div>
 
-<div class="form-group">
-    <p class="font-weight-bold">Etiquetas</p>
-
-    @foreach ($tags as $tag)
-        <label class="mr-2">
-            {!! Form::checkbox('tags[]', $tag->id, null, isset($post) && ($post->user->id != auth()->user()->id) ? ['onclick' => 'return false']: []) !!}
-            {{ $tag->name }}
-        </label>
-    @endforeach
-
-    @error('tags')
-        <br>
-        <small class="text-danger">{{ $message }}</small>
-    @enderror
+<div class="my-3">
+    <label for="tags">Etiquetas</label>
+    <select id="tags" name="tags[]" multiple style="width: 100%;">
+        @foreach ($tags as $tag)
+            @isset ($post)
+                <option value="{{ $tag->id }}" @if($post && $post->tags->contains('id', $tag->id)) selected @endif>
+            @else
+                <option value="{{ $tag->id }}">
+            @endisset
+                {{ $tag->name }}
+            </option>
+        @endforeach
+    </select>
 </div>
 
 <div class="row mb-3">

@@ -8,18 +8,21 @@
 </div>
 
 <h2 class="h3">Lista de permisos</h2>
-@forelse ($permissions as $permission)
-    <div>
-        <label for="permissions">
-            {!! Form::checkbox('permissions[]', $permission->id, null, ['class' => 'mr-1']) !!}
-            {{ $permission->description }}
-        </label>
-    </div>
-@empty
-    <div>
-        <p>No hay permisos disponibles</p>
-    </div>
-@endforelse
+<div class="my-3">
+    <label for="permissions">Permisos</label>
+    <select id="permissions" name="permissions[]" multiple style="width: 100%;">
+        @foreach ($permissions as $permission)
+            @isset($role)
+                <option value="{{ $permission->id }}" @if($role->hasPermissionTo($permission->name)) selected @endif>
+            @else
+                <option value="{{ $permission->id }}">
+            @endisset
+                {{ $permission->description }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
 @error('permissions')
     <small class="text-danger">{{ $message }}</small>
     <br>

@@ -22,7 +22,6 @@
         const closeAlert = document.querySelector('#closeAlert');
         if (alert) {
             closeAlert.addEventListener("click", function() {
-                console.log('click in alert');
                 alert.style.setProperty('display', 'none', 'important');
             });
         }

@@ -8,8 +8,8 @@
 
 @section('content')
     @if (session('success'))
-        <div class="alert alert-success">
-            <strong>{{ session('success') }}</strong>
+        <div class="alert alert-success d-flex justify-content-between">
+            <strong>{{ session('success') }}</strong><span id="closeAlert" class="font-weight-bold" style="cursor:pointer;color:black;">&#x2715;</span>
         </div>
     @endif
     <div class="card">
@@ -47,4 +47,17 @@
             </table>
         </div>
     </div>
+@stop
+
+@section('js')
+    <script>
+        const alert = document.querySelector('.alert.alert-success');
+        const closeAlert = document.querySelector('#closeAlert');
+        if (alert) {
+            closeAlert.addEventListener("click", function() {
+                console.log('click in alert');
+                alert.style.setProperty('display', 'none', 'important');
+            });
+        }
+    </script>
 @stop

@@ -14,6 +14,30 @@ class PostsIndex extends Component
 
     public $search;
 
+    public $switchStatus = [];
+
+    public function mount()
+    {
+        $this->resetSwitchStatus();
+    }
+
+    public function toggleSwitch($postId)
+    {
+        $newStatus = $this->switchStatus[$postId] == 'enable' ? 'disable' : 'enable';
+        $this->switchStatus[$postId] = $postId;
+
+        $post = Post::where('id', $postId)->first();
+        $post->update([
+            'status' => $newStatus
+        ]);
+    }
+
+    public function resetSwitchStatus() {
+        $posts = Post::orderBy('id')->pluck('id')->toArray();
+        $status = Post::orderBy('id')->pluck('status')->toArray();
+        $this->switchStatus = array_combine($posts, $status);
+    }
+
     public function render()
     {
         $posts = Post::query()
@@ -22,6 +46,8 @@ class PostsIndex extends Component
                     ->orWhereRelation('User', 'name', 'LIKE', '%'.$this->search.'%')
                     ->orWhere('name', 'LIKE', '%'.$this->search.'%');
             })->with('User')->latest('id')->paginate();
+
+        $this->resetSwitchStatus();
 
         return view('livewire.admin.posts-index', compact('posts'));
     }

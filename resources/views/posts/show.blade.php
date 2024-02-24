@@ -2,7 +2,7 @@
     <div class="container py-8">
         <h1 class="text-4xl font-bold text-white">{{ $post->name }}</h1>
         <div class="text-lg text-white mb-2">
-            {{ $post->extract }}
+            {!! $post->extract !!}
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {{-- * Main content --}}
@@ -11,7 +11,7 @@
                     <img class="w-full h-80 object-cover object-center" src="{{ Storage::url($post->image->url) }}" alt="{{ $post->name }}">
                 </figure>
                 <div class="text-base text-white mt-4 text-justify">
-                    {{ $post->body }}
+                    {!! $post->body !!}
                 </div>
             </div>
 

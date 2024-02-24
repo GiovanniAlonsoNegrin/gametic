@@ -9,46 +9,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}
-                <div class="form-group">
-                    {!! Form::label('name', 'Nombre:') !!}
-                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del post']) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::hidden('slug', null, ['id' => 'slug', 'readonly']) !!}
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('category_id', 'categoría') !!}
-                    {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
-                </div>
-
-                <div class="form-group">
-                    <p class="font-weight-bold">Etiquetas</p>
-
-                    @foreach ($tags as $tag)
-                        <label class="mr-2">
-                            {!! Form::checkbox('tags[]', $tag->id, null) !!}
-                            {{ $tag->name }}
-                        </label>
-                    @endforeach
-                </div>
-
-                <div class="form-group">
-                    {!! Form::label('extract', 'Extracto') !!}
-                    <div style="color:black !important">
-                        {!! Form::textarea('extract', null, ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group text-dark">
-                    {!! Form::label('body', 'Curpo del post') !!}
-                    <div style="color:black !important">
-                        {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-
+            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
+                @include('admin.posts.partials.form')
                 {!! Form::submit('Crear post', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
@@ -56,7 +18,19 @@
 @stop
 
 @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <style>
+        .image-wrapper{
+            position: relative;
+            padding-bottom: 56.25%;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 @stop
 
 @section('js')
@@ -107,5 +81,15 @@
         .catch( error => {
             console.error( error );
         } );
+
+        document.getElementById("file").addEventListener('change', cambiarImagen);
+        function cambiarImagen(event){
+            let file = event.target.files[0];
+            let reader = new FileReader();
+            reader.onload= (event)=>{
+                document.getElementById("picture").setAttribute('src', event.target.result)
+            };
+            reader.readAsDataURL(file);
+        }
     </script>
 @stop

@@ -13,6 +13,7 @@
                         <th>Nombre</th>
                         <th>Email usuario</th>
                         <th>Nombre usuario</th>
+                        <th>Estado</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -21,10 +22,23 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->name }}</td>
-                            <td>{{ $post->User->email }}</td>
-                            <td>{{ $post->User->name }}</td>
+                            <td>{{ $post->user->email }}</td>
+                            <td>{{ $post->user->name }}</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input
+                                        type="checkbox"
+                                        class="custom-control-input my-pointer"
+                                        id="{{$post->id}}"
+                                        style="cursor:pointer;"
+                                        wire:model="state.switchStatus.{{$post->id}}"
+                                        wire:click="toggleSwitch({{$post->id}})"
+                                        @if($switchStatus[$post->id] == 'enable') checked @endif>
+                                    <label class="custom-control-label" for="{{$post->id}}" style="cursor:pointer;"></label>
+                                </div>
+                            </td>
                             <td width="10px">
-                                <a href="{{ route('admin.posts.edit', $post) }}" class="fas fa-edit fa-1x"></a>
+                                <a href="{{ route('admin.posts.edit', $post) }}" class="{{$post->user->id == auth()->user()->id ? 'fas fa-edit fa-1x': 'fas fa-eye'}}"></a>
                             </td>
                             <td width="10px">
                                 <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">

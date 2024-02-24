@@ -9,19 +9,21 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     //Reverse one to many relationship
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function Category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
     //Many to many relationship
-    public function Tags()
+    public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }

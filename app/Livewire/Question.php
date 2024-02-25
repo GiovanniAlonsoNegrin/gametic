@@ -46,10 +46,12 @@ class Question extends Component
     {
         $question = QuestionModel::find($questionId);
 
-        $this->question_edit = [
-            'id' => $question->id,
-            'body' => $question->body
-        ];
+        if(auth()->id() == $question->user->id) {
+            $this->question_edit = [
+                'id' => $question->id,
+                'body' => $question->body
+            ];
+        }
     }
 
     public function update()
@@ -59,9 +61,11 @@ class Question extends Component
         ]);
 
         $question = QuestionModel::find($this->question_edit['id']);
-        $question->update([
-            'body' => $this->question_edit['body']
-        ]);
+        if(auth()->id() == $question->user->id) {
+            $question->update([
+                'body' => $this->question_edit['body']
+            ]);
+        }
 
         $this->reset('question_edit');
     }
@@ -69,7 +73,9 @@ class Question extends Component
     public function destroy($questionId)
     {
         $question = QuestionModel::find($questionId);
-        $question->delete();
+        if(auth()->id() == $question->user->id) {
+            $question->delete();
+        }
 
         $this->reset('question_edit');
     }

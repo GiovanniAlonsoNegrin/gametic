@@ -53,10 +53,12 @@ class Answer extends Component
     {
         $answer = AnswerModel::find($answerId);
 
-        $this->answer_edit = [
-            'id' => $answer->id,
-            'body' => $answer->body
-        ];
+        if (auth()->id() == $answer->user->id) {
+            $this->answer_edit = [
+                'id' => $answer->id,
+                'body' => $answer->body
+            ];
+        }
     }
 
     public function update()
@@ -66,9 +68,11 @@ class Answer extends Component
         ]);
 
         $answer = AnswerModel::find($this->answer_edit['id']);
-        $answer->update([
-            'body' => $this->answer_edit['body']
-        ]);
+        if (auth()->id() == $answer->user->id) {
+            $answer->update([
+                'body' => $this->answer_edit['body']
+            ]);
+        }
 
         $this->reset('answer_edit');
     }
@@ -76,7 +80,9 @@ class Answer extends Component
     public function destroy($answerId)
     {
         $answer = AnswerModel::find($answerId);
-        $answer->delete();
+        if (auth()->id() == $answer->user->id) {
+            $answer->delete();
+        }
         $this->reset('answer_edit');
     }
 

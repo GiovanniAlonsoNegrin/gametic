@@ -38,4 +38,10 @@ class Post extends Model
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    //Polimorphic one to many relationship
+    public function questions()
+    {
+        return $this->morphMany(Question::class, 'questionable');
+    }
 }

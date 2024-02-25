@@ -24,5 +24,28 @@
 
     @stack('modals')
 
+    <script>
+        const isDarkModeEnabled = document.body.classList.contains('dark');
+        if (localStorage.getItem('darkMode') == null) {
+            localStorage.setItem('darkMode', isDarkModeEnabled);
+        } else {
+            const darkMode = JSON.parse(localStorage.getItem('darkMode'));
+            if (!darkMode) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('darkMode', false);
+            }
+        }
+
+        const changeDarkModeButton = document.querySelector('#changeDarkModeButton');
+        if (changeDarkModeButton) {
+            changeDarkModeButton.onclick = () => {
+                document.body.classList.toggle('dark');
+                const currentDarkModeStatus = JSON.parse(localStorage.getItem('darkMode'));
+                const isDarkModeEnabled = document.body.classList.contains('dark');
+                localStorage.setItem('darkMode', isDarkModeEnabled);
+            }
+        }
+    </script>
+
     @livewireScripts
 </x-app-layout>

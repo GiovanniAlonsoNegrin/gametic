@@ -52,7 +52,7 @@ class PostController extends Controller
 
         $categories = $category::where('id', '!=', $category->id)->get();
         $tags = Tag::all();
-        $latestPosts = Post::latest('id')->take(4)->get();
+        $latestPosts = Post::latest('id')->where('status', 'enable')->take(4)->get();
 
         return view('posts.category', compact('posts', 'category', 'tags', 'categories', 'latestPosts'));
     }
@@ -65,7 +65,7 @@ class PostController extends Controller
         $tags = $tag->where('id', '!=', $tag->id)->get();
         $posts = $tag->posts()->where('status', 'enable')->latest('id')->paginate(4);
         $categories = Category::all();
-        $latestPosts = Post::latest('id')->take(4)->get();
+        $latestPosts = Post::latest('id')->where('status', 'enable')->take(4)->get();
 
         return view('posts.tag', compact('tag', 'tags', 'posts', 'categories', 'latestPosts'));
     }

@@ -47,6 +47,10 @@
             </option>
         @endforeach
     </select>
+
+    @error('tags')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
 </div>
 
 <div class="row mb-3">

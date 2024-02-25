@@ -118,12 +118,18 @@
 
     <script>
         $(document).ready(function() {
-            $('#tags').selectize({
+            let tags = $('#tags');
+            tags.selectize({
                 maxItems: null,
                 valueField: 'id',
                 labelField: 'name',
                 searchField: 'name',
             })
+
+            @if($post->user->id != auth()->user()->id)
+            $('.selectize-control.multi')css('pointer-events', 'none');;
+            $('.selectize-input.items.not-full.has-options.has-items').css('pointer-events', 'none');
+            @endif
         });
     </script>
 @stop

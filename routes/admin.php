@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
@@ -19,3 +20,5 @@ Route::resource('tags', TagController::class)->except('show')->names('admin.tags
 Route::resource('posts', PostController::class)->except('show')->names('admin.posts');
 
 Route::resource('roles', RoleController::class)->except('show')->names('admin.roles');
+
+Route::resource('comments', CommentController::class)->only('index')->names('admin.comments');

@@ -42,10 +42,10 @@ class PostsIndex extends Component
     {
         $posts = Post::query()
             ->when($this->search, function ($query) {
-                return $query->whereRelation('User', 'email', 'LIKE', '%'.$this->search.'%')
-                    ->orWhereRelation('User', 'name', 'LIKE', '%'.$this->search.'%')
+                return $query->whereRelation('user', 'email', 'LIKE', '%'.$this->search.'%')
+                    ->orWhereRelation('user', 'name', 'LIKE', '%'.$this->search.'%')
                     ->orWhere('name', 'LIKE', '%'.$this->search.'%');
-            })->with('User')->latest('id')->paginate();
+            })->with('user')->latest('id')->paginate();
 
         $this->resetSwitchStatus();
 

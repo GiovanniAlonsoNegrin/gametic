@@ -64,8 +64,9 @@ return [
     */
 
     'logo' => '<b>Gametic</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img' => '/assets/small_logo_transparent.png',
+    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img_class' => 'brand-image img-circle',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Gametic Logo',
@@ -86,7 +87,8 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/assets/small_logo_transparent.png',
+            // 'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +111,8 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => '/assets/small_logo_transparent.png',
+            // 'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -360,6 +363,14 @@ return [
             'icon_color' => 'cyan',
             'active' => ['admin/posts/*'],
             'can' => 'admin.posts.index'
+        ],
+        [
+            'text'  => 'Comentarios',
+            'route' => 'admin.comments.index',
+            'icon'  => 'fas fa-fw fa-comment-alt',
+            'icon_color' => 'cyan',
+            'active' => ['admin/comments/*'],
+            // 'can' => 'admin.comments.index'
         ],
         // [
         //     'text'    => 'multilevel',

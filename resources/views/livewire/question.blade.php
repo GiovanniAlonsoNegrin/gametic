@@ -5,7 +5,7 @@
             <p class="font-semibold text-xl">{{ $this->questions->count() }} comentarios</p>
         </div>
     </div>
-    @if(auth()->user())
+    @if(auth()->user()->email_verified_at)
         <div class="flex mt-2">
             <figure class="mr-4">
                 <img
@@ -29,12 +29,18 @@
             </div>
         </div>
     @else
-        <div class="flex flex-col justify-center align-middle text-center mt-5 p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 rounded-lg shadow">
-            <h1 class="dark:text-white text-3xl font-bold text-center mb-3">Inicia sesión para comentar</h1>
-            <div class="text-center my-5">
-                <a href="{{ route('login') }}" class="dark:text-white text-lg uppercase font-bold bg-blue-700 rounded-lg px-5 py-3">Iniciar sesión</a>
+        @if (!auth()->user())
+            <div class="flex flex-col justify-center align-middle text-center mt-5 p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 rounded-lg shadow">
+                <h1 class="dark:text-white text-3xl font-bold text-center mb-3">Inicia sesión para comentar</h1>
+                <div class="text-center my-5">
+                    <a href="{{ route('login') }}" class="text-white text-lg uppercase font-bold bg-blue-700 rounded-lg px-5 py-3">Iniciar sesión</a>
+                </div>
             </div>
-        </div>
+        @else
+            <div class="flex flex-col justify-center align-middle text-center mt-5 p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700 rounded-lg shadow">
+                <h1 class="dark:text-white text-3xl font-bold text-center">Verifica tu email para comentar</h1>
+            </div>
+        @endif
     @endif
 
     <p class="text-lg font-semibold mt-6 mb-4 dark:text-white">Comentarios:</p>

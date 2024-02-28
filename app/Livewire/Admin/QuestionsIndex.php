@@ -18,7 +18,9 @@ class QuestionsIndex extends Component
     #[On('destroyQuestion')]
     public function destroy($questionId)
     {
-        $questionId = Question::find($questionId);
+        $question = Question::find($questionId);
+        $this->authorize('deleteComment', $question);
+
         $questionId->delete();
     }
 

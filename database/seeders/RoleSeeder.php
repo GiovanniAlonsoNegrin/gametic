@@ -64,5 +64,10 @@ class RoleSeeder extends Seeder
                             'description' => 'Validar posts'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.posts.delete',
                             'description' => 'Eliminar posts'])->assignRole($role1);
+
+        Permission::create(['name' => 'admin.comments.index',
+                            'description' => 'Ver comentarios'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'admin.comments.delete',
+                            'description' => 'Eliminar comentarios'])->syncRoles([$role1, $role2]);
     }
 }

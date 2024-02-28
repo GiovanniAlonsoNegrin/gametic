@@ -338,7 +338,7 @@ return [
             'icon'  => 'fas fa-fw fa-user-shield',
             'icon_color' => 'cyan',
             'active' => ['admin/roles/*'],
-            // 'can' => 'admin.users.index'
+            'can' => 'admin.roles.index'
         ],
         [
             'text'  => 'Categorías',
@@ -370,7 +370,7 @@ return [
             'icon'  => 'fas fa-fw fa-comment-alt',
             'icon_color' => 'cyan',
             'active' => ['admin/comments/*'],
-            // 'can' => 'admin.comments.index'
+            'can' => 'admin.comments.index'
         ],
         // [
         //     'text'    => 'multilevel',

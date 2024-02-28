@@ -1,10 +1,12 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{-- {{ __('Profile Information') }} --}}
+        Información del perfil
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{-- {{ __('Update your account\'s profile information and email address.') }} --}}
+        Actualiza tu información de perfil de la cuenta y email.
     </x-slot>
 
     <x-slot name="form">
@@ -24,7 +26,9 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-label for="photo" value="{{ __('Photo') }}" />
+                {{-- <x-label for="photo" value="{{ __('Photo') }}" /> --}}
+                <x-label for="photo" value="Foto" />
+
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
@@ -39,12 +43,14 @@
                 </div>
 
                 <x-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
+                    {{-- {{ __('Select A New Photo') }} --}}
+                    Seleccionar una nueva foto
                 </x-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
+                        {{-- {{ __('Remove Photo') }} --}}
+                        Eliminar foto
                     </x-secondary-button>
                 @endif
 
@@ -69,16 +75,19 @@
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2 dark:text-white">
-                    {{ __('Your email address is unverified.') }}
+                    {{-- {{ __('Your email address is unverified.') }} --}}
+                    Tu email no está verificado
 
                     <button type="button" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                        {{-- {{ __('Click here to re-send the verification email.') }} --}}
+                        Clica aquí para reenviarte el email de verificación.
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                        {{ __('A new verification link has been sent to your email address.') }}
+                        {{-- {{ __('A new verification link has been sent to your email address.') }} --}}
+                        Un nuevo link de verificación ha sido enviado a tu direcicón de email.
                     </p>
                 @endif
             @endif
@@ -87,11 +96,13 @@
 
     <x-slot name="actions">
         <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{-- {{ __('Saved.') }} --}}
+            Guardado
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{-- {{ __('Save') }} --}}
+            Guardar
         </x-button>
     </x-slot>
 </x-form-section>

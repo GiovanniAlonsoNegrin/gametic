@@ -1,10 +1,12 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
+        {{-- {{ __('Two Factor Authentication') }} --}}
+        Autenticación en dos pasos
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
+        {{-- {{ __('Add additional security to your account using two factor authentication.') }} --}}
+        Añade segurdad adicional a tu cuenta usando la autenticación en dos pasos
     </x-slot>
 
     <x-slot name="content">
@@ -16,13 +18,15 @@
                     {{ __('You have enabled two factor authentication.') }}
                 @endif
             @else
-                {{ __('You have not enabled two factor authentication.') }}
+                {{-- {{ __('You have not enabled two factor authentication.') }} --}}
+                No tienes habilitada la autenticación en dos pasos
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-gray-600 dark:text-gray-400">
             <p>
-                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
+                {{-- {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }} --}}
+                Cuando la autenticación de dos pasos está activada, se te pedirá un token seguro y aleatorio durante la autenticación. Puede recuperar este token desde la aplicación Google Authenticator de su teléfono.
             </p>
         </div>
 
@@ -80,7 +84,8 @@
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-button type="button" wire:loading.attr="disabled">
-                        {{ __('Enable') }}
+                        {{-- {{ __('Enable') }} --}}
+                        Habilitar
                     </x-button>
                 </x-confirms-password>
             @else

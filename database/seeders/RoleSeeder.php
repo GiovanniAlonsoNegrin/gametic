@@ -68,6 +68,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.comments.index',
                             'description' => 'Ver comentarios'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'admin.comments.delete',
-                            'description' => 'Eliminar comentarios'])->syncRoles([$role1, $role2]);
+                            'description' => 'Eliminar comentarios'])->assignRole($role1);
     }
 }

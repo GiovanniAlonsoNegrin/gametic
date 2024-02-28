@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -30,6 +31,8 @@ class PostsIndex extends Component
         $post->update([
             'status' => $newStatus
         ]);
+
+        Cache::flush();
     }
 
     public function resetSwitchStatus() {

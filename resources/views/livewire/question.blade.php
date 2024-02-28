@@ -5,7 +5,7 @@
             <p class="font-semibold text-xl">{{ $this->questions->count() }} comentarios</p>
         </div>
     </div>
-    @if(auth()->user()->email_verified_at)
+    @if(auth()->user()?->email_verified_at)
         <div class="flex mt-2">
             <figure class="mr-4">
                 <img

@@ -17,11 +17,13 @@
 @once
 <x-dialog-modal wire:model.live="confirmingPassword">
     <x-slot name="title">
-        {{ $title }}
+        {{-- {{ $title }} --}}
+        Confirmar contraseña
     </x-slot>
 
     <x-slot name="content">
-        {{ $content }}
+        {{-- {{ $content }} --}}
+        Por tu seguridad por favor confirma tu contraseña para continuar
 
         <div class="mt-4" x-data="{}" x-on:confirming-password.window="setTimeout(() => $refs.confirmable_password.focus(), 250)">
             <x-input type="password" class="mt-1 block w-3/4" placeholder="{{ __('Password') }}" autocomplete="current-password"
@@ -35,11 +37,13 @@
 
     <x-slot name="footer">
         <x-secondary-button wire:click="stopConfirmingPassword" wire:loading.attr="disabled">
-            {{ __('Cancel') }}
+            {{-- {{ __('Cancel') }} --}}
+            Cancelar
         </x-secondary-button>
 
         <x-button class="ml-3" dusk="confirm-password-button" wire:click="confirmPassword" wire:loading.attr="disabled">
-            {{ $button }}
+            {{-- {{ $button }} --}}
+            Confirmar
         </x-button>
     </x-slot>
 </x-dialog-modal>

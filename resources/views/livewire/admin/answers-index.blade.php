@@ -26,9 +26,9 @@
                                 <td>{{ $answer->user->name }}</td>
                                 <td>{{ $answer->user->email }}</td>
                                 <td width="10px">
-                                    {{-- @can('admin.comments.delete') --}}
+                                    @can('admin.comments.delete')
                                         <button wire:click="$dispatch('deleteAnswer', {{ $answer->id }})" class="fas fa-trash-alt fa-1x text-danger ml-2 border-0 bg-transparent" type="button">
-                                    {{-- @endcan --}}
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

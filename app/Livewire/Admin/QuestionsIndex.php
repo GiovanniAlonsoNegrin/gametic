@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Question;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
@@ -19,9 +20,15 @@ class QuestionsIndex extends Component
     public function destroy($questionId)
     {
         $question = Question::find($questionId);
-        $this->authorize('deleteComment', $question);
 
-        $questionId->delete();
+        /** @var User|null $user */
+        $user = auth()->user();
+        if ($user->hasPermissionTo('admin.comments.delete')) {
+            $question->delete();
+            Cache::flush();
+        } else {
+            abort(401, 'Unauthorized');
+        }
     }
 
     public function render()
